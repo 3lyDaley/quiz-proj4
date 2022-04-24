@@ -1,6 +1,6 @@
 body {
-  background: radial-gradient(circle,rgba(247, 238, 198, .8), rgb(255, 212, 20));
-  font-family: 'Arapey', serif;
+  background: radial-gradient(circle,rgb(238, 240, 205), rgb(208, 238, 87));
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 .greeting-container {
