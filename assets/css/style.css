@@ -1,6 +1,7 @@
 body {
-  background: radial-gradient(circle,rgb(238, 240, 205), rgb(208, 238, 87));
-  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background: black;
+  color: limegreen;
+  font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .greeting-container {
