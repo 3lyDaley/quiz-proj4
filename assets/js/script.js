@@ -1,7 +1,4 @@
 
-var quizContainer = document.getElementById('quiz'); 
-var submitButton = document.getElementById('submit');
-
 
 var tenQuestions = [
   // Question 1
@@ -115,95 +112,114 @@ var tenQuestions = [
     correctAnswer: "b" 
   }
 ]
-console.log(tenQuestions);
 
+var quizContainer = document.getElementById('quiz'); 
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
 
-var buildQuiz = function(tenQuestions, quizContainer) {
-
-  var output = [];
-  var answers;
-
-  for(var i = 0; i < tenQuestions.length; i++){
-
-    answers = [];
+var buildQuiz = function(tenQuestions, quizContainer, resultsContainer, submitButton) {
+  
+  var showQuestions = function(tenQuestions, quizContainer){
     
-    // add radio button to answers
-    for(letter in tenQuestions[i].answers) {
-      answers.push(
-        '<label>'
-        + '<input type = "radio" name = "question ' + i + ' " value="' + letter + '"> '
-        + tenQuestions[i].answers[letter] + '</label>'
+    var output = [];
+    var answers;
+  
+    for(var i = 0; i < tenQuestions.length; i++){
+  
+      answers = [];
+      
+      // add radio button to answers
+      for(letter in tenQuestions[i].answers) {
+        answers.push(
+          '<label>'
+            + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+            + letter + ': '
+            + tenQuestions[i].answers[letter]
+          + '</label>'
+        );
+      }
+     
+      output.push(
+        '<div class="question">' + tenQuestions[i].question + '</div>' + '<div class ="answers">' + answers.join('</br>') + '</div>'
       );
     }
-   
-    output.push(
-      'div class="slide> <div class="question">' + tenQuestions[i].question + '</div>' + '<div class ="answers">' + answers.join('</br>') + '</div></div>'
-    );
+  
+    quizContainer.innerHTML = output.join('');
+  }
+  
+  var showResults = function(tenQuestions, quizContainer, resultsContainer) {
+    // gather answer containers from quiz
+    var answerContainers = quizContainer.querySelectorAll('.answers');
+    console.log(answerContainers);
 
+    // keeping track of answers
+    var userAnswer = '';
+    var numCorrect = 0;
     
+    // find selected answer for questions
+    for ( i = 0; i < tenQuestions.length; i++) {
+      
+      // give us selected answer OR if there isn't one, give an empty object
+      userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+      console.log(userAnswer);
+      // if answer is correct
+      if(userAnswer === tenQuestions[i].correctAnswer){
+        // add to correct score
+        numCorrect++;
+      
+        // color answers green
+        answerContainers[i].style.color = 'lightgreen';
+      } else {
+        // color answer red
+        answerContainers[i].style.color = 'red';
+    }
+    
+  } 
+  // show number of correct answers out of total
+  resultsContainer.innerHTML = numCorrect + ' out of '  + tenQuestions.length;  
   }
 
-  quizContainer.innerHTML = output.join('');
-  showResults();
+  // show questions
+  showQuestions(tenQuestions, quizContainer);
+
+  // on submit, show results
+  submitButton.onclick = function() {
+    showResults(tenQuestions, quizContainer, resultsContainer);
+  }
 }
 
+buildQuiz(tenQuestions, quizContainer, resultsContainer, submitButton);
+//  var showSlide = function(n) {
+//    // hide current slide by removing active-slide class
+//    slides[currentSlide].classList.remove('active-slide');
+//    slides[n].classList.add('active-slide');
+//    //update current slide number
+//    currentSlide = n;
+//    //on first slide hide back button ELSE show back button
+//    if(currentSlide === 0){
+//      previousButton.style.display = 'none';
+//    } else {
+//      previousButton.style.display = 'inline-block';
+//    }
+//    // on last slide hide NEXT button show SUBMIT button, else vice versa
+//    if(currentSlide === slides.length - 1){
+//      nextButton.style.display = 'none';
+//      submitButton.style.display = 'inline-block';
+//    } else {
+//      nextButton.style.display = 'inline-block';
+//      submitButton.style.display = "none";
+//    }
+//  }
 
+// buildQuiz(tenQuestions, quizContainer);
 
-var showResults = function() {
-  // gather anwer containers from quiz
-  var answerContainers = quizContainer.querySelectorAll('.answers');
+// // paginations
+// var backButton = document.getElementById("back");
+// var nextButton = document.getElementById("next");
+// var slides = document.querySelectorAll(".slide")
 
-  // keeping track of answers
-  let numCorrect = 0;
-
-  // find selected answer for questions
-  for ( i = 0; i < tenQuestions.length; i++) {
-
-    // if answer is correct
-    if(tenQuestions[i].correctAnswer){
-      // add to correct score
-      numCorrect++;
-
-    //   // color answers green
-    //   answerContainers[tenQuestions[i]].style.color = 'lightgreen';
-    } else {
-       // color answer red
-       answerContainers[tenQuestions[i]].style.color = 
-      'red';
-    }
-  } 
-}
- var showSlide = function(n) {
-   // hide current slide by removing active-slide class
-   slides[currentSlide].classList.remove('active-slide');
-   slides[n].classList.add('active-slide');
-   //update current slide number
-   currentSlide = n;
-   //on first slide hide back button ELSE show back button
-   if(currentSlide === 0){
-     previousButton.style.display = 'none';
-   } else {
-     previousButton.style.display = 'inline-block';
-   }
-   // on last slide hide NEXT button show SUBMIT button, else vice versa
-   if(currentSlide === slides.length - 1){
-     nextButton.style.display = 'none';
-     submitButton.style.display = 'inline-block';
-   } else {
-     nextButton.style.display = 'inline-block';
-     submitButton.style.display = "none";
-   }
- }
-
-buildQuiz(tenQuestions, quizContainer);
-
-// paginations
-var backButton = document.getElementById("back");
-var nextButton = document.getElementById("next");
-var slides = document.querySelectorAll(".slide")
-
-//show the first slide
-showSlide(currentSlide);
+// //show the first slide
+// showSlide(currentSlide);
 
 
 //document.getElementById('startButton').onclick(buildQuiz);
