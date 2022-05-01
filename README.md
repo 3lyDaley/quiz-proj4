@@ -37,10 +37,10 @@ List the ready features here:
 
 ## Screenshots
 
-<img src="./assets/screenshots/homepage_screenshot"></img>
-<img src="./assets/screenshots/questions_screenshot"></img>
-<img src="./assets/screenshots/wrongAnswer_screenshot"></img>
-<img src="./assets/screenshots/score_screenshot"></img>
+<img src="./assets/screenshots/homepage_screenshot.png"></img>
+<img src="./assets/screenshots/questions_screenshot.png"></img>
+<img src="./assets/screenshots/wrongAnswer_screenshot.png"></img>
+<img src="./assets/screenshots/score_screenshot.png"></img>
 
 
 ## Project Status
