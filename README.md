@@ -16,7 +16,7 @@
 
 
 ## General Information
-This is a simple timed quiz developed to experiment with javascript's time increments, dynamically adding radio buttons and HTML elements, and creating a scoring system. I gave the quiz a matrix aesthetic to add a little nerdy fun to it :) 
+This is a simple timed quiz developed to experiment with javascript's time increments, dynamically adding radio buttons and HTML elements, and creating a scoring system. I gave the quiz a matrix aesthetic to add a little nerdy fun to it :
 
 
 
@@ -37,16 +37,10 @@ List the ready features here:
 
 ## Screenshots
 
-<h3 align="center">Mobile Layouts</h3>
-<br/>
-
-<p align="center">
-  <img src="./assets/Screenshots/homepage_screenshot.png" width="300")/>
-  <img src="./assets/Screenshots/questions_screenshot.png" width="300")/>
-  <br/>
-  <img src="./assets/Screenshots/wrongAnswer_screenshot" width="300")/>
-  <img src="./assets/Screenshots/score_screenshot" width="300")/>
-  </p>
+<img src="./assets/screenshots/homepage_screenshot"></img>
+<img src="./assets/screenshots/questions_screenshot"></img>
+<img src="./assets/screenshots/wrongAnswer_screenshot"></img>
+<img src="./assets/screenshots/score_screenshot"></img>
 
 
 ## Project Status
