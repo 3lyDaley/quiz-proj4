@@ -2,6 +2,7 @@ body {
   background: black;
   color: limegreen;
   font-family: 'Nanum Gothic Coding', monospace;
+  margin: 5%;
 }
 
 .greeting-container {
@@ -10,7 +11,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+label {
+  padding: 1%;
+}
+.answers {
+  padding-left: 2%;
+}
+.question-container {
+  padding: 3%;
+}
 .slide {
   position: absolute;
   left: 0px;

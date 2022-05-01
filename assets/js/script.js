@@ -116,9 +116,24 @@ var tenQuestions = [
 var quizContainer = document.getElementById('quiz'); 
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
+var remainingSeconds = 60;
+var seconds = document.getElementById('seconds');
+var userScore = 0;
 
 var buildQuiz = function(tenQuestions, quizContainer, resultsContainer, submitButton) {
   
+  var timer = setInterval(() => {
+
+    if ( remainingSeconds === 0){
+      clearInterval(timer)
+      showResults(tenQuestions, quizContainer, resultsContainer);
+    }
+
+    seconds.textContent = remainingSeconds;
+    remainingSeconds--;
+  }, 1000)
+
+
   var showQuestions = function(tenQuestions, quizContainer){
     
     var output = [];
@@ -132,7 +147,7 @@ var buildQuiz = function(tenQuestions, quizContainer, resultsContainer, submitBu
       for(letter in tenQuestions[i].answers) {
         answers.push(
           '<label>'
-            + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+            + '<input type="radio" name="question'+i+'" value="'+letter+'"> '
             + letter + ': '
             + tenQuestions[i].answers[letter]
           + '</label>'
@@ -166,17 +181,19 @@ var buildQuiz = function(tenQuestions, quizContainer, resultsContainer, submitBu
       if(userAnswer === tenQuestions[i].correctAnswer){
         // add to correct score
         numCorrect++;
-      
-        // color answers green
-        answerContainers[i].style.color = 'lightgreen';
+
       } else {
         // color answer red
         answerContainers[i].style.color = 'red';
+        remainingSeconds -= 2
     }
     
   } 
+
+  userScore = 10*numCorrect + remainingSeconds
+
   // show number of correct answers out of total
-  resultsContainer.innerHTML = numCorrect + ' out of '  + tenQuestions.length;  
+  resultsContainer.innerHTML = '<h2 class="text-center">'+ numCorrect + ' out of '  + tenQuestions.length + '</h2>\n<h1> Your Score: ' + userScore + '/160</h2>';  
   }
 
   // show questions
@@ -189,37 +206,4 @@ var buildQuiz = function(tenQuestions, quizContainer, resultsContainer, submitBu
 }
 
 buildQuiz(tenQuestions, quizContainer, resultsContainer, submitButton);
-//  var showSlide = function(n) {
-//    // hide current slide by removing active-slide class
-//    slides[currentSlide].classList.remove('active-slide');
-//    slides[n].classList.add('active-slide');
-//    //update current slide number
-//    currentSlide = n;
-//    //on first slide hide back button ELSE show back button
-//    if(currentSlide === 0){
-//      previousButton.style.display = 'none';
-//    } else {
-//      previousButton.style.display = 'inline-block';
-//    }
-//    // on last slide hide NEXT button show SUBMIT button, else vice versa
-//    if(currentSlide === slides.length - 1){
-//      nextButton.style.display = 'none';
-//      submitButton.style.display = 'inline-block';
-//    } else {
-//      nextButton.style.display = 'inline-block';
-//      submitButton.style.display = "none";
-//    }
-//  }
 
-// buildQuiz(tenQuestions, quizContainer);
-
-// // paginations
-// var backButton = document.getElementById("back");
-// var nextButton = document.getElementById("next");
-// var slides = document.querySelectorAll(".slide")
-
-// //show the first slide
-// showSlide(currentSlide);
-
-
-//document.getElementById('startButton').onclick(buildQuiz);
