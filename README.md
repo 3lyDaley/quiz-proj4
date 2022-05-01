@@ -1,7 +1,7 @@
 # Timed Javascript Quiz
 
-# Ely Portfolio live
-> Live demo [_here_](https://3lydaley.github.io/Daley-Portfolio/). <!-- Project link here. -->
+# Live Quiz
+> Live demo [_here_](https://3lydaley.github.io/quiz-proj4/).
 
 ## Table of Contents
 * [General Info](#general-information)
